@@ -2,11 +2,15 @@ package com.sysonetest.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,13 +19,11 @@ public class Automovil implements Serializable {
 
     int precioBasico;
     String nombre;
-    TechoCorredizo techo;
-    AireAcondicionado aire;
-    FrenosAbs frenos;
-    Airbag airbag;
-    LlantasAleacion llantas;
-
+    
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "automovil_comodidades", joinColumns = @JoinColumn(name = "automovilId"), inverseJoinColumns = @JoinColumn(name = "comodidadesID"))
     ArrayList comodidades;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "automovilId")
@@ -30,12 +32,7 @@ public class Automovil implements Serializable {
     public Automovil() {
         nombre = null;
         precioBasico = 0;
-        techo = null;
-        aire = null;
-        frenos = null;
-        airbag = null;
-        llantas = null;
-
+        
     }
 
     public String getNombre() {
@@ -52,46 +49,6 @@ public class Automovil implements Serializable {
 
     public void setPrecioBasico(int precioBasico) {
         this.precioBasico = precioBasico;
-    }
-
-    public TechoCorredizo getTecho() {
-        return techo;
-    }
-
-    public void setTecho(TechoCorredizo techo) {
-        this.techo = techo;
-    }
-
-    public AireAcondicionado getAire() {
-        return aire;
-    }
-
-    public void setAire(AireAcondicionado aire) {
-        this.aire = aire;
-    }
-
-    public FrenosAbs getFrenos() {
-        return frenos;
-    }
-
-    public void setFrenos(FrenosAbs frenos) {
-        this.frenos = frenos;
-    }
-
-    public Airbag getAirbag() {
-        return airbag;
-    }
-
-    public void setAirbag(Airbag airbag) {
-        this.airbag = airbag;
-    }
-
-    public LlantasAleacion getLlantas() {
-        return llantas;
-    }
-
-    public void setLlantas(LlantasAleacion llantas) {
-        this.llantas = llantas;
     }
 
     public ArrayList getComodidades() {
