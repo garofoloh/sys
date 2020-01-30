@@ -1,7 +1,7 @@
 package com.sysonetest.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,18 +20,27 @@ public class Automovil implements Serializable {
     int precioBasico;
     String nombre;
     
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "automovil_comodidades", joinColumns = @JoinColumn(name = "automovilId"), inverseJoinColumns = @JoinColumn(name = "comodidadesID"))
-    ArrayList comodidades;
+   // @ManyToMany(cascade = CascadeType.PERSIST)
+    //@JoinTable(name = "automovil_comodidades", joinColumns = @JoinColumn(name = "automovilId"), inverseJoinColumns = @JoinColumn(name = "comodidadesID"))
+    //List comodidades;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "automovilId")
     private Long id;
 
-    public Automovil() {
-        nombre = null;
-        precioBasico = 0;
+    public Automovil(String nombre) {
+        this.nombre = nombre;
+        
+        switch (nombre){
+            case "sedan":
+                precioBasico = 230000;
+            case "familiar":
+                precioBasico = 245000;
+            case "coupe":
+                precioBasico = 270000;
+        }
+        
         
     }
 
@@ -51,14 +60,14 @@ public class Automovil implements Serializable {
         this.precioBasico = precioBasico;
     }
 
-    public ArrayList getComodidades() {
+   /* public List getComodidades() {
         return comodidades;
     }
 
-    public void setComodidades(ArrayList comodidades) {
+    public void setComodidades(List comodidades) {
         this.comodidades = comodidades;
     }
-
+    */
     public int MostrarPrecio() {
         return 0;
     }
