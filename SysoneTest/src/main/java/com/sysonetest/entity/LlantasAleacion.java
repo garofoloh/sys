@@ -5,6 +5,8 @@ class LlantasAleacion {
     String nombre;
 
     public LlantasAleacion() {
+        precio =12000;
+        nombre = "LL";
     }
 
     public int getPrecio() {

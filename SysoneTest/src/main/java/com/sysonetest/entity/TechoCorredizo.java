@@ -6,6 +6,8 @@ public class TechoCorredizo {
     String nombre;
 
     public TechoCorredizo() {
+        precio = 12000;
+        nombre = "TC";
     }
 
     public int getPrecio() {

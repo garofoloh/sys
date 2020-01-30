@@ -6,6 +6,8 @@ class AireAcondicionado {
     String nombre;
 
     public AireAcondicionado() {
+        precio =20000;
+        nombre="AA";
     }
 
     public int getPrecio() {
