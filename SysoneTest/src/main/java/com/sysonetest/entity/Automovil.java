@@ -1,9 +1,16 @@
-
 package com.sysonetest.entity;
 
+import java.util.ArrayList;
 
-public abstract class Automovil {
+public class Automovil {
 
-    
-    
+    int precioBasico;
+    TechoCorredizo techo;
+    AireAcondicionado aire;
+    FrenosAbs frenos;
+    Airbag airbag;
+    LlantasAleacion llantas;
+
+    ArrayList comodidades;
+
 }
