@@ -20,6 +20,8 @@ public class Automovil implements Serializable {
 
     int precioBasico;
     String nombre;
+    @Column(columnDefinition ="Integer(10) default '0'")
+    int precioFinal;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "automoviles_comodidades", joinColumns = @JoinColumn(name = "automovil_Id"), inverseJoinColumns = @JoinColumn(name = "comodidadID"))
@@ -38,6 +40,10 @@ public class Automovil implements Serializable {
 
 
 }
+
+    public Automovil() {
+    }
+    
 
 public String getNombre() {
         return nombre;
@@ -62,9 +68,22 @@ public String getNombre() {
     public void setComodidades(List<Comodidad> comodidades) {
         this.comodidades = comodidades;
     }
+
+    public int getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(int precioFinal) {
+        this.precioFinal = precioFinal;
+    }
     
-    public int MostrarPrecio() {
-        return 0;
+    public int calcularPrecio(Automovil auto,List<Comodidad> comodidades) {
+        precioFinal += auto.precioBasico;
+        for(int i =0; i<comodidades.size();i++){
+            precioFinal += comodidades.get(i).getPrecio();
+        }
+        this.setPrecioFinal(precioFinal);
+        return precioFinal;
     }
 
     public Long getId() {

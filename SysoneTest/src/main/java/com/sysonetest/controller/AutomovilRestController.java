@@ -38,6 +38,8 @@ public class AutomovilRestController {
     @GetMapping("/listadoAutomovilPorId/{id}")
     public Automovil indexId(@PathVariable Long id) {
         Automovil auto = this.automovilService.findById(id);
+ 
+       auto.calcularPrecio(auto, auto.getComodidades());
 
         return auto;
     }
