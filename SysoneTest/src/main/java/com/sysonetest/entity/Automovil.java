@@ -1,10 +1,20 @@
 package com.sysonetest.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Automovil {
+@Entity
+@Table(name = "automoviles")
+public class Automovil implements Serializable {
 
     int precioBasico;
+    String nombre;
     TechoCorredizo techo;
     AireAcondicionado aire;
     FrenosAbs frenos;
@@ -12,16 +22,28 @@ public class Automovil {
     LlantasAleacion llantas;
 
     ArrayList comodidades;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "automovilId")
+    private Long id;
 
     public Automovil() {
+        nombre = null;
         precioBasico = 0;
         techo = null;
-        aire =null;
+        aire = null;
         frenos = null;
         airbag = null;
-        llantas =null;
-        comodidades = new ArrayList();
-        
+        llantas = null;
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getPrecioBasico() {
@@ -79,7 +101,17 @@ public class Automovil {
     public void setComodidades(ArrayList comodidades) {
         this.comodidades = comodidades;
     }
-    
-    
+
+    public int MostrarPrecio() {
+        return 0;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }
