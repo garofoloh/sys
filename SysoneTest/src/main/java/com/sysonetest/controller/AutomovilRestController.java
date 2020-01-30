@@ -35,7 +35,7 @@ public class AutomovilRestController {
         return autos;
     }
 
-    @GetMapping("/listadoTorneoPorId/{id}")
+    @GetMapping("/listadoAutomovilPorId/{id}")
     public Automovil indexId(@PathVariable Long id) {
         Automovil auto = this.automovilService.findById(id);
 
