@@ -38,6 +38,14 @@ public class AutomovilService {
 
 		return this.automovilRepository.save(automovilRequest);
 	}
+
+    public Automovil updateAutomovil(Automovil automovilActual, Automovil automovil) {
+		automovilActual.setNombre(automovil.getNombre());
+		automovilActual.setComodidades(automovil.getComodidades());
+		automovilActual.setPrecioBasico(automovil.getPrecioBasico());
+		automovilActual.setPrecioFinal(automovil.getPrecioFinal());
+		return automovilRepository.save(automovilActual);
+    }
     
     
     
