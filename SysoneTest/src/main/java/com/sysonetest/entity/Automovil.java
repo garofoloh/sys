@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,32 +20,26 @@ public class Automovil implements Serializable {
 
     int precioBasico;
     String nombre;
-    
-   // @ManyToMany(cascade = CascadeType.PERSIST)
-    //@JoinTable(name = "automovil_comodidades", joinColumns = @JoinColumn(name = "automovilId"), inverseJoinColumns = @JoinColumn(name = "comodidadesID"))
-    //List comodidades;
-    
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "automoviles_comodidades", joinColumns = @JoinColumn(name = "automovil_Id"), inverseJoinColumns = @JoinColumn(name = "comodidadID"))
+    List<Comodidad> comodidades;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "automovilId")
+    @Column(name = "automovil_Id")
     private Long id;
 
-    public Automovil(String nombre) {
+    public Automovil(Long id, String nombre, int precioBasico) {
         this.nombre = nombre;
-        
-        switch (nombre){
-            case "sedan":
-                precioBasico = 230000;
-            case "familiar":
-                precioBasico = 245000;
-            case "coupe":
-                precioBasico = 270000;
-        }
-        
-        
-    }
+        this.id = id;
 
-    public String getNombre() {
+        this.precioBasico = precioBasico;
+
+
+}
+
+public String getNombre() {
         return nombre;
     }
 
@@ -60,14 +55,14 @@ public class Automovil implements Serializable {
         this.precioBasico = precioBasico;
     }
 
-   /* public List getComodidades() {
+    public List<Comodidad> getComodidades() {
         return comodidades;
     }
 
-    public void setComodidades(List comodidades) {
+    public void setComodidades(List<Comodidad> comodidades) {
         this.comodidades = comodidades;
     }
-    */
+    
     public int MostrarPrecio() {
         return 0;
     }

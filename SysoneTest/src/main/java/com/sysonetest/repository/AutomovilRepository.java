@@ -4,7 +4,7 @@ import com.sysonetest.entity.Automovil;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository("userRepository")
+@Repository("automovilRepository")
 public interface AutomovilRepository extends JpaRepository<Automovil, Long>{
 
     public Automovil findAutomovilBynombre(String nombre);
